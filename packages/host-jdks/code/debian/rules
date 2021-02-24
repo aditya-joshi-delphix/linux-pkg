@@ -1,0 +1,38 @@
+#!/usr/bin/make -f
+#
+# Copyright 2021 Delphix
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+%:
+	dh $@
+
+override_dh_install:
+	mkdir -p debian/tmp/opt/delphix/host/jdk/linux_x86/jdk1.8
+	mkdir -p debian/tmp/opt/delphix/host/jdk/linux_x86/jdk1.8_172
+	mkdir -p debian/tmp/opt/delphix/host/jdk/linux_ppc64le/jdk1.8
+	mkdir -p debian/tmp/opt/delphix/host/jdk/aix_powerpc/jdk1.8
+	mkdir -p debian/tmp/opt/delphix/host/jdk/hpux_ia64/jdk1.8
+	mkdir -p debian/tmp/opt/delphix/host/jdk/sunos_sparc/jdk1.8
+	mkdir -p debian/tmp/opt/delphix/host/jdk/sunos_x86/jdk1.8
+	mkdir -p debian/tmp/opt/delphix/host/jdk/windows_x86/jdk1.8
+	mv OpenJDK8U-jdk_x64_linux_hotspot_8u262b10.tar.gz debian/tmp/opt/delphix/host/jdk/linux_x86/jdk1.8
+	mv OpenJDK8_x64_Linux_jdk8u172-b11.tar.gz debian/tmp/opt/delphix/host/jdk/linux_x86/jdk1.8_172
+	mv OpenJDK8U-jdk_ppc64le_linux_hotspot_8u262b10.tar.gz debian/tmp/opt/delphix/host/jdk/linux_ppc64le/jdk1.8
+	mv jdk-8.0.0.611-aix-powerpc64.tar.gz debian/tmp/opt/delphix/host/jdk/aix_powerpc/jdk1.8
+	mv jdk-8.0.20-hpux-ia64.tar.gz debian/tmp/opt/delphix/host/jdk/hpux_ia64/jdk1.8
+	mv OpenJDK8U-jdk_x64_solaris_hotspot_8u262b10.tar.gz debian/tmp/opt/delphix/host/jdk/sunos_x86/jdk1.8
+	mv OpenJDK8U-jdk_sparcv9_solaris_hotspot_8u262b10.tar.gz debian/tmp/opt/delphix/host/jdk/sunos_sparc/jdk1.8
+	mv OpenJDK8U-jdk_x64_windows_hotspot_8u262b10.zip debian/tmp/opt/delphix/host/jdk/windows_x86/jdk1.8
+	dh_install --autodest "debian/tmp/*"
